@@ -1,0 +1,18 @@
+$SourceUserName="";
+$TargetUserName="";
+$TargetFolderName="Archiwum";
+$Fromdate ="01/01/2015";
+$Todate = "12/31/2015";
+$date="Received:"+$Fromdate+".."+$Todate
+
+$cred = Get-Credential
+
+Connect-ExchangeOnline -Credential $cred -ShowProgress $true
+$SccSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.compliance.protection.outlook.com/powershell-liveid/ -Credential $cred -Authentication "Basic" -AllowRedirection;
+Import-PSSession $SccSession
+
+Search-Mailbox $SourceUserName -SearchQuery "$date" -TargetMailbox "$TargetUserName" -TargetFolder "$TargetFolderName" -LogLevel Full -DeleteContent
+
+Remove-PSSession $SccSession
+
+Disconnect-ExchangeOnline
