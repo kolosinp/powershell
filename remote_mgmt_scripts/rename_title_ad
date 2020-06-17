@@ -1,0 +1,9 @@
+#zmiana stanowsika dla danego użytkownika
+$uzytkownik = "..."
+$job_title="..."
+
+$skrypt = {           
+            Get-ADUser  $args[0] | Set-ADUser -Title $args[1] -Description $args[1]
+        } #skrypt z robotą do zrobienia
+
+Invoke-Command -ComputerName ... -Credential ... -ScriptBlock $skrypt -ArgumentList $uzytkownik,$job_title # uruchom skrypt na serwerze domeny
