@@ -1,0 +1,3 @@
+$user=$args[0]+"adres email"
+Invoke-Expression $( C:\skrypty_uzytkownicy\op\op signin https://adres_do_1password login_do_1password klucz_do_1password )
+C:\skrypty_uzytkownicy\op\op suspend $user
